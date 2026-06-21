@@ -1,0 +1,11 @@
+﻿services:
+  bot:
+    build: .
+    env_file:
+      - .env
+    volumes:
+      - ./data/raw:/app/data/raw
+      - ./data/index:/app/data/index
+      - ./data/processed:/app/data/processed
+      - ./.cache:/app/.cache
+    command: ["sh", "-c", "python scripts/ensure_index.py && python main.py"]
